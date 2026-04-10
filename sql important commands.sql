@@ -19,13 +19,13 @@ SELECT DISTINCT *
 FROM rpt_02a_cr_sheet;
 
 -- Step 2: Empty original table
-TRUNCATE TABLE rpt_02a_cr_sheet;
+TRUNCATE TABLE rpt_02a_cr_sheet; -- This is faster than DELETE and resets identity if any
 
 -- Step 3: Insert clean data back
-INSERT INTO rpt_02a_cr_sheet
-SELECT * FROM #temp_clean;
+INSERT INTO rpt_02a_cr_sheet 
+SELECT * FROM #temp_clean; -- Assuming #temp_clean is the result of Step 1
 
 -- Step 4: Drop temp table
-DROP TABLE #temp_clean;
+--DROP TABLE #temp_clean;
 
-COMMIT;
+COMMIT; --commit transaction to save changes
